@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/" />
+    <title>Homework #1: Host a dynamic website using cloud virtualization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- application css -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <h3>Homework #1: Host a dynamic website using cloud virtualization</h3>
+    <h4>Calculating sum of two numbers</h4>
+    <form method="get" id='calc'>
+       Number 1: <input type="number" name="min"><br>
+       Number 2: <input type="number" name="max"><br>
+       SUM of both the numbers is <label id="result"></label> <br>
+        <input type="button" value="Calculate Sum" id="calculate">
+    </form>
+
+    <script>
+
+        $(function(){
+            $("#calculate").click(function(){
+               
+                $.get('https://7gd4qpaw5h.execute-api.us-east-1.amazonaws.com/Dev/addition?' + $('#calc').serialize(), function( data ) {
+                    
+                    $("#result").html(JSON.parse(data.body)["ans"]);
+                });
+            });
+        });
+    
+</script>
+</body>
+</html>
